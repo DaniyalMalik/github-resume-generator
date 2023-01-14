@@ -7,12 +7,14 @@ export default function User({ user, repos, languages }) {
         backgroundColor: 'white',
         width: '60vw',
         margin: '10px',
+        marginTop: '200px',
         padding: '10px',
         borderRadius: '4px',
         boxShadow: '2px 2px 4px 2px black',
       }}>
       <div style={{ margin: '10px', padding: '10px' }}>
         <h1>{user.userName}</h1>
+        <a href={user.userName}>{user.url}</a>
         <h6>{user.bio ? user.bio : 'No Bio'}</h6>
         <p>
           On GitHub since {new Date(user.createdAt).getFullYear()},{' '}
@@ -23,8 +25,8 @@ export default function User({ user, repos, languages }) {
       <div style={{ margin: '10px', padding: '10px' }}>
         <h2>Languages</h2>
         <ul>
-          {Object.keys(languages).map((language) => (
-            <li>
+          {Object.keys(languages).map((language, key) => (
+            <li key={key}>
               {language} - {languages[language]}%
             </li>
           ))}
@@ -34,19 +36,19 @@ export default function User({ user, repos, languages }) {
         <h2>Popular Repositories</h2>
         {repos.map((repo) => (
           <>
+            <div
+              style={{
+                display: 'flex',
+                justifyContent: 'space-between',
+                alignItems: 'center',
+              }}>
+              <h3>{repo.name}</h3>
+              <span style={{ float: 'right' }}>
+                {new Date(repo.created_at).toDateString()} -{' '}
+                {new Date(repo.updated_at).toDateString()}
+              </span>
+            </div>
             <p>
-              <div
-                style={{
-                  display: 'flex',
-                  justifyContent: 'space-between',
-                  alignItems: 'center',
-                }}>
-                <h3>{repo.name}</h3>
-                <span style={{ float: 'right' }}>
-                  {new Date(repo.created_at).toDateString()} -{' '}
-                  {new Date(repo.updated_at).toDateString()}
-                </span>
-              </div>
               {repo.description}
               <br />
               <b>Language: </b>

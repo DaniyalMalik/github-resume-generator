@@ -34,6 +34,8 @@ export default function Generate({ findRepos }) {
         backgroundColor: 'white',
         flexDirection: 'column',
         width: '80vw',
+        position: 'absolute',
+        top: '10%',
         margin: '10px',
         padding: '10px',
         borderRadius: '4px',

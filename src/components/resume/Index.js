@@ -14,6 +14,7 @@ export default function Index() {
 
   const findRepos = async (user) => {
     setUser({
+      url: user.html_url,
       userName: user.login,
       image: user.avatar_url,
       bio: user.bio,
@@ -78,7 +79,9 @@ export default function Index() {
         alignItems: 'center',
         flexDirection: 'column',
       }}>
-      <h1 style={{ margin: '0px' }}>My GitHub Resume</h1>
+      <h1 style={{ margin: '0px', position: 'absolute', top: 0 }}>
+        My GitHub Resume
+      </h1>
       <Generate findRepos={findRepos} />
       {Object.keys(user).length > 0 && (
         <User user={user} repos={repos} languages={languages} />
